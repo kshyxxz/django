@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect,Http404
 from django.urls import reverse
 
 monthly_challenges = {
@@ -14,24 +14,20 @@ monthly_challenges = {
     'september': 'Learn and revise one topic each day',
     'october': 'Limit social media usage to 30 minutes per day',
     'november': 'Express gratitude by writing one thankful note daily',
-    'december': 'Reflect on the year and plan goals for next year',
+    'december': None,
 }
 
 def index(request):
 	list_items = ""
 	months = list(monthly_challenges.keys())
-	for month in months:
-		Month = month.capitalize()
-		redirect_url = reverse('monthly-challenge', args=[month.lower()])
-		list_items += f"<li><a href='{redirect_url}'>{Month}</a></li>"
-	return HttpResponse(f"<ul>{list_items}</ul>")
+	return render(request, 'pilot/index.html', { 'months':months})
 
 def monthly_challenge(request, month):
 	try:
 		challenge_text = monthly_challenges[month.lower()]
-		return HttpResponse(f'<h1>{month.capitalize()} plans : {challenge_text}</h1>')
+		return render(request, 'pilot/challenge.html', {'text' : challenge_text, 'month_name' : month})
 	except:
-				return HttpResponseNotFound('<h1>This URL string is not supported!</h1>')
+				raise Http404()
 	
 def monthly_challenge_by_number(request,month):
 	months = list(monthly_challenges.keys())

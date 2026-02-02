@@ -1,0 +1,9 @@
+{%extends "base.html"%} {%block content%}
+<ul>
+	{%for month in months%}
+	<li>
+		<a href="{%url 'monthly-challenge' month%}">{{month|title}}</a>
+	</li>
+	{%endfor%}
+</ul>
+{%endblock content%}

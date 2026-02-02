@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{month_name | upper}}</title>
+	</head>
+	<body>
+		{%include 'pilot/includes/header.html' with key1='value1%}
+		<h1>{{month_name | title}}</h1>
+		{%if text is not None%}
+		<h2>{{text}}</h2>
+		{%else%}
+		<h2>Not Found</h2>
+		{%endif%}
+	</body>
+</html>
