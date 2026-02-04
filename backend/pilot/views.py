@@ -31,6 +31,10 @@ def monthly_challenge(request, month):
 	
 def monthly_challenge_by_number(request,month):
 	months = list(monthly_challenges.keys())
-	redirect_month = months[month-1]
+	try:
+		redirect_month = months[month-1]
+	except (IndexError, TypeError):
+		raise Http404()
+
 	redirect_url = reverse("monthly-challenge", args=[redirect_month])
 	return redirect(redirect_url)
