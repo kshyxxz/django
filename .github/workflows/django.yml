@@ -24,4 +24,4 @@ jobs:
 
             - name: Run tests
               run: |
-                  python manage.py test
+                  python bookstore/manage.py test
