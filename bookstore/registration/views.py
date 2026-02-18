@@ -3,6 +3,11 @@ from .forms import RegistrationForm
 from .models import Registration
 from django.contrib.auth.hashers import make_password
 
+def list_user(request):
+	users = Registration.objects.all()
+	user_input = "this is user inptut"
+	return render(request, 'registration/list.html', {'users': users, 'user_input': user_input})
+
 def registration_form(request):
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
