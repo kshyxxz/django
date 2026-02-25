@@ -13,7 +13,7 @@
         </style>
     </head>
     <body>
-        <form method='post' action="{% url 'registration:form' %}">
+        <form method='post' action="{% url 'registration:form_sql' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Submit</button>

